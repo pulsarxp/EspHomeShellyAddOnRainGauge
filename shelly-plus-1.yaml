@@ -1,0 +1,29 @@
+esphome:
+  name: shelly-plus-1
+
+esp32:
+  board: esp32dev
+
+wifi:
+  ssid: "WiFiName"
+  password: "WiFiPassword"
+
+logger:
+  level: NONE
+
+api:
+
+ota:
+  platform: esphome
+  password: "12345678"
+
+sensor:
+  - platform: pulse_counter
+    pin:
+      number: GPIO19
+    name: "Rainfall amount"
+    unit_of_measurement: "mm"
+    accuracy_decimals: 2
+    update_interval: 10s
+    filters:
+      - multiply: 0.2794  # Each pulse is 0.2794 mm of rain
